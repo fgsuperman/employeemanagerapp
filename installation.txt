@@ -1,0 +1,50 @@
+back
+https://github.com/getarrays/employeemanager
+https://github.com/fgsuperman/employeemanager.git
+
+front
+https://github.com/getarrays/employeemanagerapp
+https://github.com/fgsuperman/employeemanagerapp.git
+
+sudo lsof -i -P -n | grep LISTEN
+‐------------
+Lancement du Front:
+1) installation node js et angular cli:
+• curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - 
+• sudo apt-get install -y nodejs
+• npm install -g @angular/cli
+
+2) clone du frontend et config
+• git clone https://github.com/fgsuperman/employeemanagerapp.git
+• cd employeemanagerapp
+• cd src/environments/
+• nano environment.ts
+    --> mettre la bonne adresse ip du backend
+   (  apiBaseUrl: 'http://40.117.121.14:8080' )
+
+3) compilation et execution
+• npm install
+• ng serve --port 4200 --host 0.0.0.0 --disableHostCheck true
+
+ouvrire l appli ds un navigateur
+localhost:4200
+
+---------------------
+
+Lancement du back
+1) installation mysql
+• sudo apt install mysql-server
+• sudo mysql_secure_installation
+      mdp: letmein
+• sudo mysql
+• create database 
+      mysql> create database employeemanager ;
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'letmein';
+mysql> FLUSH PRIVILEGES;
+
+2) projet java
+[  ] git clone https://github.com/fgsuperman/employeemanager.git
+[  ] cd employeemanager
+[  ] mvn clean package -DskipTests
+[  ] cd target
+[  ] java -jar employeemanager-0.0.1-SNAPSHOT.jar
